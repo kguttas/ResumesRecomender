@@ -16,7 +16,7 @@ class db_mongo:
     def get_database(self):
 
         # Provide the mongodb atlas url to connect python to mongodb using pymongo
-        CONNECTION_STRING = "mongodb://userRR:Natalia1985.@172.241.27.30:27017/dbResumesRecommender"
+        CONNECTION_STRING = "mongodb://rcAdmin:123456789@127.0.0.1:27017/dbResumesRecommender"
 
         # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
         from pymongo import MongoClient
@@ -44,7 +44,7 @@ class db_mongo:
 
 
 
-        item_details = collection.find({},{ "_id": 1, "text": 2 }).limit(top)
+        item_details = collection.find({},{ "_id": 1, "text": 2, "class": 3 }).limit(top)
 
         items_df = DataFrame(list(item_details))
 

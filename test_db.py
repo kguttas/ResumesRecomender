@@ -10,7 +10,7 @@ df = db.get_text(2)
 
 #print(items_df)
 
-for item in df["text"]:
+for item in df["class"]:
     # This does not give a very readable output
     text = item.encode('utf8')
     print(item)
