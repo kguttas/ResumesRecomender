@@ -22,7 +22,7 @@ class CleanText:
 
             text = ''.join(text)
 
-            all_text.append(text.lower())
+            all_text.append(text)
 
         # Remover caracteres distintos a letras
 
@@ -62,7 +62,7 @@ class CleanText:
 
             new_list.append(new_text)
 
-        all_text = new_list.copy()
+        #all_text = new_list.copy()
 
         wn = nltk.WordNetLemmatizer()
 
@@ -72,7 +72,7 @@ class CleanText:
 
             new_list.append(new_text)
 
-        all_text = new_list.copy()
+        #all_text = new_list.copy()
 
         return all_text
 
