@@ -24,6 +24,20 @@ class CleanText:
 
             all_text.append(text)
 
+        new_text = list()
+
+        for item in all_text:
+
+            text = [word.lower() for word in item]
+
+            text = ''.join(text)
+
+            new_text.append(text)
+
+        all_text = new_text.copy()
+
+        #print(all_text)
+
         # Remover caracteres distintos a letras
 
         regex = re.compile('[^a-zA-Z ]')
@@ -62,7 +76,7 @@ class CleanText:
 
             new_list.append(new_text)
 
-        #all_text = new_list.copy()
+        all_text = new_list.copy()
 
         wn = nltk.WordNetLemmatizer()
 
@@ -72,7 +86,7 @@ class CleanText:
 
             new_list.append(new_text)
 
-        #all_text = new_list.copy()
+        all_text = new_list.copy()
 
         return all_text
 
