@@ -536,7 +536,7 @@ def retrain_ner_spacy(train_data, output_dir, model="blank", n_iter=100):
                     ner_model.update(docs=texts, golds=annotations, drop=0.5, losses=losses)  ###update
         
         ## test the trained model
-        print("--- Test new model ---")
+        print("--- TestUnit new model ---")
         for text, _ in train_data:
             doc = ner_model(text)
             print([(ent.text, ent.label_) for ent in doc.ents])

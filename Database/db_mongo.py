@@ -16,7 +16,7 @@ class db_mongo:
     def get_database(self):
 
         # Provide the mongodb atlas url to connect python to mongodb using pymongo
-        CONNECTION_STRING = "mongodb://rcAdmin:123456789@127.0.0.1:27017/dbResumesRecommender"
+        CONNECTION_STRING = "mongodb://dbOwnerRR:123456@localhost:27017/?authSource=dbResumesRecommender"
 
         # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
         from pymongo import MongoClient
@@ -74,3 +74,8 @@ class db_mongo:
         items_df = DataFrame(list(item_details))
 
         return items_df
+
+    def clean_text_full_resumes(self):
+        collection = self.db["text_full_resumes"]
+
+        collection.delete_many({})
