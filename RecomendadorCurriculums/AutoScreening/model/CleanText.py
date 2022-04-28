@@ -7,13 +7,21 @@ import re
 
 class CleanText:
 
-    def __init__(self):
+    def __init__(self, path_nltk_data):
+
+        nltk.data.path.append(path_nltk_data)
 
         nltk.download('wordnet')
 
         nltk.download('omw-1.4')
 
         nltk.download('stopwords')
+
+        #nltk.download('all')
+
+        nltk.download('all', download_dir=path_nltk_data)
+
+        #nltk.download()
 
         self.data_original = None
         self.data_clean = None

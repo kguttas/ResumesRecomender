@@ -63,14 +63,14 @@ class Utilities:
         df_for_process = pd.concat([df_CVs, df_offer], ignore_index=True)
         return df_for_process
 
-    def preprocess_text(self, df_for_process):
+    def preprocess_text(self, df_for_process, path_nltk_data):
         """
         Esta funcíon preprocesa el texto aplicando distintas técnicas para depurar el texto usadas en NLP
         :param df_for_process: dataframe con el texto
         :return: dataframe con el texto depurado
         """
 
-        ct = CleanText()
+        ct = CleanText(path_nltk_data)
 
         df_for_process["raw_text"] = df_for_process["text"]
         df_for_process['text'] = ct.cleanner_process(df_for_process["text"])

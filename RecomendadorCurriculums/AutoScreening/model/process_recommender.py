@@ -1,15 +1,21 @@
-from RecomendadorCurriculums.AutoScreening.model import Utilities
-from RecomendadorCurriculums.AutoScreening.model import AutoScreeningModel
+import os, sys
+
+p = os.path.abspath('../')
+sys.path.insert(1, p)
+
+from model import Utilities
+from model import AutoScreeningModel
 
 class ProcessRecommender:
 
-    def __init__(self, path_model_word2vec, path_resumes, top_recommendation, text_offer):
+    def __init__(self, path_model_word2vec, path_resumes, top_recommendation, text_offer, path_nltk_data):
         print("Process Recommender")
 
         self.path_model_word2vec = path_model_word2vec
         self.path_resumes = path_resumes
         self.top_recommendation = top_recommendation
         self.text_offer = text_offer
+        self.path_nltk_data = path_nltk_data
 
     def start(self):
         print("Start process...")
@@ -31,7 +37,7 @@ class ProcessRecommender:
 
         # print(df_for_process)
 
-        df_text_clean = util.preprocess_text(df_for_process)
+        df_text_clean = util.preprocess_text(df_for_process, self.path_nltk_data)
 
         # print(df_text_clean)
 

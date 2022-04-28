@@ -1,14 +1,15 @@
-from RecomendadorCurriculums.AutoScreening.model import Utilities
-from RecomendadorCurriculums.AutoScreening.model import AutoScreeningModel
+from model import process_recommender
 
 
 # Parámetros
 
 path_model_word2vec = '../data/model_word2vec.bin'
 
-path_resumes = '../../../data/process_resumes'
+path_resumes = 'C:\\Users\\Administrator\\Desktop\\AutoScreening\\process_resumes'
 
 top_recommendation = 10
+
+path_nltk_data = "C:\\inetpub\\AutoScreeningWebApi\\WebApi\\nltk_data"
 
 text_offer = """
  Function title: Software Engineer (Full-stack Angular/Java Developer)
@@ -76,45 +77,7 @@ In the event of equal merit, preference may be given to the applicant from the u
 Candidates should go to our Jobs website and read the tips on how to apply. Item 1 includes information on the EUROCONTROL competency models (technical & behavioural) – Candidates should refer to the behavioural competency model to know the behaviours expected for the different levels.
  """
 
-############
-util = Utilities.Utilities()
+proc = process_recommender.ProcessRecommender(path_model_word2vec, path_resumes, top_recommendation, text_offer, path_nltk_data)
 
-df_CVs = util.convert_resumes_files2dataframe(path_resumes)
 
-print(df_CVs.head())
-
-df_offer = util.convert_text_job_offer(text_offer)
-
-print(df_offer)
-
-id_offer = df_offer["_id"].iloc[0]
-print(id_offer)
-
-df_for_process = util.concat_joboffer_CVs(df_offer, df_CVs)
-
-#print(df_for_process)
-
-df_text_clean = util.preprocess_text(df_for_process)
-
-#print(df_text_clean)
-
-model = AutoScreeningModel.AutoScreeningModel(path_model_word2vec)
-
-corpus = model.generate_corpus(df_text_clean)
-
-#print(corpus)
-
-model.build_vocab(corpus)
-
-# Solo para probar
-most_similar = model.get_most_similar("dharamvirsinghgmailcom")
-
-#print(most_similar)
-
-recommended = model.recommendations(id_offer, df_text_clean, top_recommendation)
-
-print(recommended)
-
-firts_element = recommended[recommended.index == 0]
-
-#print(firts_element["common_texts"].iloc[0])
+recommended = proc.start()
