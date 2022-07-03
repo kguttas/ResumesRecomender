@@ -92,7 +92,6 @@ class AutoScreeningModel:
         corpus = []
         for words in df_for_process['text']:
             corpus.append(words.split())
-            corpus.append(words)
 
         return corpus
 
